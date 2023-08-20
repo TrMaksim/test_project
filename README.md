@@ -36,7 +36,8 @@
 
 ## Модель базы данных
 
-![Модель базы данных](![photo_2023-08-21_00-58-51](https://github.com/TrMaksim/test_project/assets/127137829/47622856-a114-4856-9a63-05ed01f85a68)
+![Модель базы данных](![photo_2023-08-21_00-58-51](https://github.com/TrMaksim/test_project/assets/127137829/fadd0502-7da7-4f52-891d-1cc438bd2f53)
+
 )
 
 ## Лицензия
