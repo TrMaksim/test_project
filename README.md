@@ -41,7 +41,7 @@
 
 ## Лицензия
 
-Этот проект распространяется под лицензией [MIT]([ссылка-на-лицензию](https://opensource.org/licenses/MIT)).
+Этот проект распространяется под лицензией [MIT]([[ссылка-на-лицензию](https://opensource.org/licenses/MIT)](https://opensource.org/license/mit/)).
 
 ## Контакты
 
