@@ -39,6 +39,7 @@
      `DB_PASSWORD=db_password`
      `DB_HOST=localhost`
      `DB_PORT=5432`(Порт может отличаться)
+
 5.Добавляем в файл с настройками через команды `from environ import Env`
     Далее считываем переменные `env = Env()`, `env.read_env()`, `env(Название переменной)`
      
