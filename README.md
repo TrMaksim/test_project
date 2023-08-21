@@ -36,7 +36,7 @@
 
 ## Модель базы данных
 
-![Модель базы данных](![photo_2023-08-21_00-58-51](https://github.com/TrMaksim/test_project/assets/127137829/fadd0502-7da7-4f52-891d-1cc438bd2f53)
+![Модель базы данных](https://github.com/TrMaksim/test_project/assets/127137829/fadd0502-7da7-4f52-891d-1cc438bd2f53)
 
 )
 
