@@ -14,37 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
-from films.views import FilmsAPIView, FilmsListView
-from user.views.favorite_view import FavoritesFilmsAPIView
-from user.views.user_view import UserAPIView, UserListView
 
-settingsurl = [
+from kinolog import settings
+
+urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/drf_auth/", include("rest_framework.urls")),
+    path("api/v1/", include("films.urls")),
+    path("api/v1/", include("user.urls")),
     path("api/v1/auth/", include("djoser.urls")),
     re_path(r"^auth/", include("djoser.urls.authtoken")),
 ]
 
-filmsurlpatterns = [
-    path("api/v1/films/", FilmsListView.as_view(), name="films-list"),
-    path("api/v1/films/<uuid:id>/", FilmsAPIView.as_view(), name="films-detail"),
-]
-
-userurlpatterns = [
-    path("api/v1/users/", UserListView.as_view(), name="user-list"),
-    path("api/v1/users/<uuid:id>/", UserAPIView.as_view(), name="user-detail"),
-    path(
-        "api/v1/users/<uuid:user_id>/favorite/",
-        FavoritesFilmsAPIView.as_view(),
-        name="user-favorite",
-    ),
-    path(
-        "api/v1/users/<uuid:user_id>/favorite/<uuid:films_id>/",
-        FavoritesFilmsAPIView.as_view(),
-        name="user-favorite-film",
-    ),
-]
-
-urlpatterns = userurlpatterns + filmsurlpatterns + settingsurl
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

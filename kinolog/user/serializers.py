@@ -15,10 +15,10 @@ class UserSerializer(serializers.Serializer):
     last_name = serializers.CharField(max_length=125)
     phone = serializers.CharField(max_length=20)
     email = serializers.EmailField()
-    favorite = FilmsSerializer(many=True, read_only=True)
+    favorite = FilmsSerializer(many=True)
 
     def create(self, validated_data):
-        favorites_data = validated_data.pop("favorites")
+        favorites_data = validated_data.pop("favorite")
         user = UserCustom.objects.create(**validated_data)
 
         for favorite_data in favorites_data:

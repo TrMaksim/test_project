@@ -35,4 +35,5 @@ class Category(models.Model):
         return reverse("category", kwargs={"category_id": self.id})
 
     class Meta:
+        verbose_name = "Категория"
         verbose_name_plural = "Категории"

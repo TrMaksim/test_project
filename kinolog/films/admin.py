@@ -16,16 +16,27 @@ class FilmsAdmin(admin.ModelAdmin):
         "category",
     )
     list_display_links = ("name",)
-    search_fields = ("name", "time_release", "category")
+    search_fields = (
+        "name",
+        "time_release",
+        "category",
+    )
+    raw_id_fields = ("category",)
+    filter_horizontal = ("directors",)
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("name",)
     list_display_links = ("name",)
+    search_fields = ("name",)
 
 
 @admin.register(Directors)
 class DirectorsAdmin(admin.ModelAdmin):
     list_display = ("name", "description")
     list_display_links = ("name",)
+    search_fields = (
+        "name",
+        "description",
+    )

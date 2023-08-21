@@ -19,4 +19,5 @@ class UserCustom(models.Model):
         return reverse("user", kwargs={"user_id": self.id})
 
     class Meta:
+        verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"

@@ -35,14 +35,13 @@ class FilmsAPIView(APIView):
     # Доступ только по токену
 
     def get(self, request, id=None, *args, **kwargs):
-        if id is not None:
+        if id:
             film = get_object_or_404(Films, id=id)
             serializer = FilmsSerializer(film)
             return Response(serializer.data)
 
         queryset = Films.objects.all()
-        serializer = FilmsSerializer(queryset, many=True)
-        return Response({"films": serializer.data})
+        return Response({"films": FilmsSerializer(queryset, many=True).data})
 
     def put(self, request, id=None, *args, **kwargs):
         film = get_object_or_404(Films, id=id)

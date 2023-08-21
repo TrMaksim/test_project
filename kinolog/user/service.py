@@ -10,8 +10,14 @@ class UserFilter(filters.FilterSet):
 
     class Meta:
         model = UserCustom
-        fields = ["first_name", "phone"]
-        ordering_fields = ["first_name", "phone"]
+        fields = (
+            "first_name",
+            "phone",
+        )
+        ordering_fields = (
+            "first_name",
+            "phone",
+        )
 
 
 class UserPagination(PageNumberPagination):

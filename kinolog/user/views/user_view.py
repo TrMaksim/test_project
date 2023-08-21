@@ -34,14 +34,13 @@ class UserAPIView(APIView):
     # будет только по токену
 
     def get(self, request, id=None, *args, **kwargs):
-        if id is not None:
+        if id:
             user = get_object_or_404(UserCustom, id=id)
             serializer = UserSerializer(user)
             return Response(serializer.data)
 
         queryset = UserCustom.objects.all()
-        serializer = UserSerializer(queryset, many=True)
-        return Response({"users": serializer.data})
+        return Response({"users": UserSerializer(queryset, many=True).data})
 
     def put(self, request, id=None, *args, **kwargs):
         user = get_object_or_404(UserCustom, id=id)

@@ -14,4 +14,5 @@ class Directors(models.Model):
         return self.name
 
     class Meta:
+        verbose_name = "Режиссёр"
         verbose_name_plural = "Режиссёры"

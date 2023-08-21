@@ -23,3 +23,4 @@ class AdminUserCustom(admin.ModelAdmin):
         "first_name",
         "phone",
     )
+    filter_horizontal = ("favorite",)

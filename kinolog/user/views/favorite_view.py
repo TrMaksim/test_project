@@ -31,7 +31,7 @@ class FavoritesFilmsAPIView(APIView):
         user = self.get_user(user_id)
 
         try:
-            film = Films.objects.get()
+            film = Films.objects.get(id=films_id)
         except Films.DoesNotExist:
             return Response({"error": f"Film with ID {films_id} does not exist."}, status=404)
 
