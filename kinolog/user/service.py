@@ -1,5 +1,6 @@
 from django_filters import rest_framework as filters
 from rest_framework.pagination import PageNumberPagination
+
 from .models import UserCustom
 
 
@@ -9,8 +10,8 @@ class UserFilter(filters.FilterSet):
 
     class Meta:
         model = UserCustom
-        fields = ['first_name', 'phone']
-        ordering_fields = ['first_name', 'phone']
+        fields = ["first_name", "phone"]
+        ordering_fields = ["first_name", "phone"]
 
 
 class UserPagination(PageNumberPagination):

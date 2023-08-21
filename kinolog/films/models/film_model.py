@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 from django.urls import reverse
 
@@ -10,17 +11,17 @@ class Films(models.Model):
     description = models.TextField(blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
-    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True)
-    directors = models.ManyToManyField('Directors', related_name='creator')
+    category = models.ForeignKey("Category", on_delete=models.PROTECT, null=True)
+    directors = models.ManyToManyField("Directors", related_name="creator")
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('film', kwargs={'film_id': self.id})
+        return reverse("film", kwargs={"film_id": self.id})
 
     class Meta:
-        verbose_name_plural = 'Фильмы'
+        verbose_name_plural = "Фильмы"
 
 
 class Category(models.Model):
@@ -31,7 +32,7 @@ class Category(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('category', kwargs={'category_id': self.id})
+        return reverse("category", kwargs={"category_id": self.id})
 
     class Meta:
-        verbose_name_plural = 'Категории'
+        verbose_name_plural = "Категории"

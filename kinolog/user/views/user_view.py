@@ -5,7 +5,6 @@ from rest_framework.filters import OrderingFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from films.models import Films
 from user.models import UserCustom
 from user.serializers import UserSerializer
 from user.service import UserFilter, UserPagination
@@ -16,9 +15,9 @@ class UserListView(generics.ListCreateAPIView):
     serializer_class = UserSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     filterset_class = UserFilter
-    ordering_fields = ['first_name', 'phone']
+    ordering_fields = ["first_name", "phone"]
     pagination_class = UserPagination
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
@@ -26,12 +25,13 @@ class UserListView(generics.ListCreateAPIView):
 
         film = serializer.save()
 
-        return Response({'film': UserSerializer(film).data}, status=status.HTTP_201_CREATED)
+        return Response({"film": UserSerializer(film).data}, status=status.HTTP_201_CREATED)
 
 
 class UserAPIView(APIView):
-    # permission_classes = (IsAuthenticated,)
-    # authentication_classes = (TokenAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication,) Для демонстрации можно использовать, но доступ по Session
+    # будет только по токену
 
     def get(self, request, id=None, *args, **kwargs):
         if id is not None:
@@ -49,7 +49,7 @@ class UserAPIView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response({'user': UserSerializer(user).data})
+        return Response({"user": UserSerializer(user).data})
 
     def delete(self, request, id=None, *args, **kwargs):
         user = get_object_or_404(UserCustom, id=id)

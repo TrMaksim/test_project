@@ -1,4 +1,5 @@
 import uuid
+
 from django.db import models
 
 
@@ -13,4 +14,4 @@ class Directors(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Режиссёры'
+        verbose_name_plural = "Режиссёры"

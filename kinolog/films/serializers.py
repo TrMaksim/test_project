@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import Directors, Films
 
 
@@ -14,11 +15,11 @@ class FilmsSerializer(serializers.Serializer):
     directors = DirectorsSerializer(many=True)
 
     def create(self, validated_data):
-        directors_data = validated_data.pop('directors')
+        directors_data = validated_data.pop("directors")
         film = Films.objects.create(**validated_data)
 
         for director_data in directors_data:
-            director, _ = Directors.objects.get_or_create(name=director_data['name'])
+            director, _ = Directors.objects.get_or_create(name=director_data["name"])
             film.directors.add(director)
 
         return film
@@ -33,7 +34,7 @@ class FilmsSerializer(serializers.Serializer):
         if directors_data is not None:
             instance.directors.clear()
             for director_data in directors_data:
-                director, created = Directors.objects.get_or_create(name=director_data['name'])
+                director, created = Directors.objects.get_or_create(name=director_data["name"])
                 instance.directors.add(director)
             instance.save()
             return instance

@@ -1,21 +1,21 @@
 from django.contrib.auth.models import User
-from rest_framework.test import APITestCase
-from rest_framework import status
 from django.urls import reverse
-from user.models import UserCustom
 from films.models import Films
+from rest_framework import status
+from rest_framework.test import APITestCase
+from user.models import UserCustom
 
 
 class UserAPIListTestCase(APITestCase):
     def setUp(self):
-        self.usercustom = UserCustom.objects.create(first_name="John",
-                                                    last_name="Doe",
-                                                    phone="1234567890",
-                                                    email="johndoe@example.com")
-        self.user = User.objects.create_user(username='testuser',
-                                             email='test@gmail.com',
-                                             password='password')
-        self.client.login(username='testuser', password='password')
+        self.usercustom = UserCustom.objects.create(
+            first_name="John",
+            last_name="Doe",
+            phone="1234567890",
+            email="johndoe@example.com",
+        )
+        self.user = User.objects.create_user(username="testuser", email="test@gmail.com", password="password")
+        self.client.login(username="testuser", password="password")
 
     def test_get_user_list(self):
         url = reverse("user-list")
@@ -66,18 +66,20 @@ class UserAPIListTestCase(APITestCase):
 
 class FavoritesFilmsAPITestCase(APITestCase):
     def setUp(self):
-        self.usercustom = UserCustom.objects.create(first_name="John",
-                                                    last_name="Doe",
-                                                    phone="1234567890",
-                                                    email="johndoe@example.com")
-        self.user = User.objects.create_user(username='testuser',
-                                             email='test@gmail.com',
-                                             password='password')
+        self.usercustom = UserCustom.objects.create(
+            first_name="John",
+            last_name="Doe",
+            phone="1234567890",
+            email="johndoe@example.com",
+        )
+        self.user = User.objects.create_user(username="testuser", email="test@gmail.com", password="password")
         self.client.force_authenticate(user=self.user)
 
-        self.film = Films.objects.create(name="Test Film",
-                                         time_release='2020-01-01',
-                                         description="Test description",)
+        self.film = Films.objects.create(
+            name="Test Film",
+            time_release="2020-01-01",
+            description="Test description",
+        )
         self.film_id = str(self.film.id)
 
     def test_get_favorite_films(self):

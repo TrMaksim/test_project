@@ -1,5 +1,6 @@
 from django_filters import rest_framework as filters
 from rest_framework.pagination import PageNumberPagination
+
 from .models import Films
 
 
@@ -9,8 +10,8 @@ class FilmsFilter(filters.FilterSet):
 
     class Meta:
         model = Films
-        fields = ['category_id', 'time_release']
-        ordering_fields = ['category_id', 'time_release']
+        fields = ["category_id", "time_release"]
+        ordering_fields = ["category_id", "time_release"]
 
 
 class FilmsPagination(PageNumberPagination):

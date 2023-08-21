@@ -1,5 +1,6 @@
-from rest_framework import serializers
 from films.models import Films
+from rest_framework import serializers
+
 from .models import UserCustom
 
 
@@ -17,7 +18,7 @@ class UserSerializer(serializers.Serializer):
     favorite = FilmsSerializer(many=True, read_only=True)
 
     def create(self, validated_data):
-        favorites_data = validated_data.pop('favorites')
+        favorites_data = validated_data.pop("favorites")
         user = UserCustom.objects.create(**validated_data)
 
         for favorite_data in favorites_data:
@@ -27,10 +28,10 @@ class UserSerializer(serializers.Serializer):
         return user
 
     def update(self, instance, validated_data):
-        instance.first_name = validated_data.get('first_name')
-        instance.last_name = validated_data.get('last_name')
-        instance.phone = validated_data.get('phone')
-        instance.email = validated_data.get('email')
+        instance.first_name = validated_data.get("first_name")
+        instance.last_name = validated_data.get("last_name")
+        instance.phone = validated_data.get("phone")
+        instance.email = validated_data.get("email")
         instance.save()
         return instance
 
@@ -39,7 +40,7 @@ class UpdateFavoritesSerializer(serializers.Serializer):
     films_id = serializers.UUIDField()
 
     def update(self, instance, validated_data):
-        films_id = validated_data['films_id']
+        films_id = validated_data["films_id"]
         try:
             film = Films.objects.get(pk=films_id)
         except Films.DoesNotExist:

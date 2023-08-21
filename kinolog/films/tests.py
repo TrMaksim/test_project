@@ -1,14 +1,14 @@
 from django.contrib.auth.models import User
-from rest_framework.test import APITestCase
-from rest_framework import status
 from django.urls import reverse
-from films.models import Films, Category, Directors
+from films.models import Category, Directors, Films
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 
 class FilmsAPIViewTestCase(APITestCase):
     def setUp(self):
-        self.category = Category.objects.create(name='Test Category')
-        self.director = Directors.objects.create(name='Test Director', description='Test Description')
+        self.category = Category.objects.create(name="Test Category")
+        self.director = Directors.objects.create(name="Test Director", description="Test Description")
 
         self.film_data = {
             "name": "Test Film",
@@ -17,10 +17,12 @@ class FilmsAPIViewTestCase(APITestCase):
             "category_id": str(self.category.id),
         }
 
-        self.user = User.objects.create_user(username='testuser@example.com',
-                                             email='testuser@example.com',
-                                             password='testpassword')
-        self.client.login(username='testuser@example.com', password='testpassword')
+        self.user = User.objects.create_user(
+            username="testuser@example.com",
+            email="testuser@example.com",
+            password="testpassword",
+        )
+        self.client.login(username="testuser@example.com", password="testpassword")
 
         self.film = Films.objects.create(**self.film_data)
         self.film.directors.set([self.director])
@@ -38,10 +40,9 @@ class FilmsAPIViewTestCase(APITestCase):
             "time_release": "2023-02-01",
             "description": "Updated description",
             "category_id": str(self.category.id),
-            "directors": [{"name": "Update Test Director"}]
-
+            "directors": [{"name": "Update Test Director"}],
         }
-        response = self.client.put(url, updated_data, format='json')
+        response = self.client.put(url, updated_data, format="json")
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Films.objects.get(id=self.film.id).name, "Updated Film Name")
 
@@ -54,10 +55,12 @@ class FilmsAPIViewTestCase(APITestCase):
 
 class FilmsListViewTestCase(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username='testuser@example.com',
-                                             email='testuser@example.com',
-                                             password='testpassword')
-        self.client.login(username='testuser@example.com', password='testpassword')
+        self.user = User.objects.create_user(
+            username="testuser@example.com",
+            email="testuser@example.com",
+            password="testpassword",
+        )
+        self.client.login(username="testuser@example.com", password="testpassword")
 
     def test_get_films_list(self):
         url = reverse("films-list")
@@ -65,8 +68,8 @@ class FilmsListViewTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_create_film(self):
-        self.category = Category.objects.create(name='Test Category')
-        self.director = Directors.objects.create(name='Test Director')
+        self.category = Category.objects.create(name="Test Category")
+        self.director = Directors.objects.create(name="Test Director")
 
         film_data = {
             "name": "Test Film",
@@ -77,7 +80,6 @@ class FilmsListViewTestCase(APITestCase):
         }
 
         url = reverse("films-list")
-        response = self.client.post(url, film_data, format='json')
+        response = self.client.post(url, film_data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Films.objects.count(), 1)
-
