@@ -31,6 +31,17 @@
 
 1. Перейдите в директорию `kinolog/`: `cd kinolog/`
 2. Запустите сервер Django: `python manage.py runserver`
+3. Чтобы правильно настроить подключение к бд создаём `.env` в директории с файлом `settings.py`
+4. Прописываем переменные с конфидициальными данными.Пример:
+     `SECRET_KEY=secret_key`
+     `DB_NAME=db_name`
+     `DB_USER=db_user`
+     `DB_PASSWORD=db_password`
+     `DB_HOST=localhost`
+     `DB_PORT=5432`(Порт может отличаться)
+5.Добавляем в файл с настройками через команды `from environ import Env`
+    Далее считываем переменные `env = Env()`, `env.read_env()`, `env(Название переменной)`
+     
 
 Откройте браузер и перейдите по указанным ссылкам в файле `urls.py`, чтобы воспользоваться функционалом проекта. Пример: [http://localhost:8000/link_from_urls.py](http://localhost:8000/link_from_urls.py)
 
