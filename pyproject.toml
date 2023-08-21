@@ -1,0 +1,9 @@
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+cache-dir = ".ruff-cache"
+ignore = ["B904", "B023"]
+line-length = 120
+select = ["E", "F", "B"]
+exclude=[".git", ".ruff-cache", "build", "dist", "node_modules", "venv", "migrations"]
