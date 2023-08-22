@@ -33,12 +33,12 @@
 2. Запустите сервер Django: `python manage.py runserver`
 3. Чтобы правильно настроить подключение к бд создаём `.env` в директории с файлом `settings.py`
 4. Прописываем переменные с конфидициальными данными.Пример:
-     `SECRET_KEY=secret_key`
-     `DB_NAME=db_name`
-     `DB_USER=db_user`
-     `DB_PASSWORD=db_password`
-     `DB_HOST=localhost`
-     `DB_PORT=5432`(Порт может отличаться)
+     1)`SECRET_KEY=secret_key`
+     2)`DB_NAME=db_name`
+     3)`DB_USER=db_user`
+     4)`DB_PASSWORD=db_password`
+     5)`DB_HOST=localhost`
+     6)`DB_PORT=5432`(Порт может отличаться)
 5. Добавляем в файл с настройками через команды `from environ import Env`. Далее считываем переменные:
 `env = Env()`,
 `env.read_env()`,
