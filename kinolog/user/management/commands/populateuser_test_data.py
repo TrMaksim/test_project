@@ -1,4 +1,3 @@
-import uuid
 from django.core.management.base import BaseCommand
 from films.models import Films
 from user.models import UserCustom

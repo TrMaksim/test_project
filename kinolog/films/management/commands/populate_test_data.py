@@ -9,13 +9,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         categories = [
-            {
-                "id": uuid.uuid4(),
-                "name": "Category 1"
-            },
-            {
-                "id": uuid.uuid4(),
-                "name": "Category 2"},
+            {"id": uuid.uuid4(), "name": "Category 1"},
+            {"id": uuid.uuid4(), "name": "Category 2"},
         ]
 
         directors = [
